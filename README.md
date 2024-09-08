@@ -37,7 +37,7 @@ This tool **does not replace** the NPSP Data Importer but instead **enhances** i
    ```bash
    git clone https://github.com/yourusername/npsp-quick-importer.git
 
-   ## How to Use
+## How to Use
 
 1. **Run the Flow**:
    - Navigate to **Setup** → **Flows**.
