@@ -1,6 +1,6 @@
-![My Project Image](./images/screenA1.png)
 
 # NPSP Quick Importer
+![My Project Image](./images/screenA1v2.png)
 
 **NPSP Quick Importer** is an extension to the **NPSP Data Importer** tool, designed to streamline data imports for nonprofits using Salesforce NPSP. This solution leverages the power of the NPSP Data Importer and enhances the user experience by speeding up the import process. With this tool, you can either import data directly into the **NPSP Data Import object** or choose any other Salesforce object by entering its API name, providing flexibility for use cases beyond the standard NPSP setup. 
 
