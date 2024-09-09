@@ -34,7 +34,7 @@ This tool **does not replace** the NPSP Data Importer but instead **enhances** i
 ## Installation
 
 1. **Install the Unmanaged Package**:
-   Install the unmanaged package from this link: [Install NPSP Quick Importer](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj00000030Zl&isdtp=p1).
+   Install the unmanaged package from this link: [Install NPSP Quick Importer](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj00000030hp&isdtp=p1).
 
 2. **Deploy from GitHub**:
    You can also clone this repository and deploy it manually using Salesforce CLI or any deployment tool:
