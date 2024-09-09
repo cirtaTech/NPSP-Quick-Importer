@@ -17,7 +17,7 @@ public class CsvDataProcessorTest {
         
         Test.startTest();
         
-        // Call the method with valid inputs for the Account object
+        // Call the method with valid inputs for the Account object (general object, not NPSP specific)
         CsvDataProcessor.ProcessResult result = CsvDataProcessor.processCsvData(csvContent, 'Account', null);
         
         // Assert that the process was successful
@@ -26,7 +26,7 @@ public class CsvDataProcessorTest {
         
         Test.stopTest();
     }
-    
+
     /**
      * @description Test to ensure the CSV data processing handles errors when invalid data is provided.
      */
@@ -37,7 +37,7 @@ public class CsvDataProcessorTest {
         
         Test.startTest();
         
-        // Call the method with the Account object
+        // Call the method with the Account object (no dependency on NPSP)
         CsvDataProcessor.ProcessResult result = CsvDataProcessor.processCsvData(csvContent, 'Account', null);
         
         // Assert that the process failed
@@ -45,32 +45,6 @@ public class CsvDataProcessorTest {
         System.assertEquals('Errors encountered during insert, no records have been imported.', result.message);
         System.assert(result.errorMessages.size() > 0, 'Error messages should be captured');
         
-        Test.stopTest();
-    }
-    
-    /**
-     * @description Test to ensure CSV data with batch ID is processed successfully.
-     */
-    @isTest
-    static void testProcessCsvDataWithBatchId() {
-        // Create a test Data Import Batch (assuming batch ID is a required field in NPSP)
-        npsp__DataImportBatch__c testBatch = new npsp__DataImportBatch__c(Name = 'Test Batch');
-        insert testBatch;
-
-        // Create a CSV file with batch ID and required fields for the NPSP Data Import object
-        // Adjust the fields to match the required fields for npsp__DataImport__c
-        String csvContent = 'npsp__NPSP_Data_Import_Batch__c,Name,Email\n' +
-                            testBatch.Id + ',Test Contact,test@example.com';
-
-        Test.startTest();
-
-        // Call the method for the npsp__DataImport__c object
-        CsvDataProcessor.ProcessResult result = CsvDataProcessor.processCsvData(csvContent, 'npsp__DataImport__c', testBatch.Id);
-
-        // Assert that the process was successful
-        System.assertEquals(true, result.success, 'The process should be successful');
-        System.assertEquals('All records inserted successfully.', result.message);
-
         Test.stopTest();
     }
     
@@ -85,7 +59,7 @@ public class CsvDataProcessorTest {
         Test.startTest();
         
         // Call the method to parse the CSV into a list of SObjects
-        List<SObject> sObjects = CsvDataProcessor.parseCsv(csvContent, 'Account', null);
+        List<SObject> sObjects = CsvDataProcessor.parseCsv(csvContent, 'Account', null, new List<String>());
         
         // Assert that two SObjects were created
         System.assertEquals(2, sObjects.size(), 'Two SObjects should be created from the CSV');
@@ -94,23 +68,22 @@ public class CsvDataProcessorTest {
     }
     
     /**
-     * @description Test to ensure CSV parsing correctly handles batch IDs for NPSP Data Import objects.
+     * @description Test to handle incorrect data types and ensure the processor returns proper errors.
      */
     @isTest
-    static void testParseCsvWithBatchId() {
-        // Create a CSV with batch ID for the NPSP Data Import object
-        String csvContent = 'npsp__NPSP_Data_Import_Batch__c,Name\nBatch123,Test Contact';
+    static void testProcessCsvDataWithInvalidFieldTypes() {
+        // Create a CSV file with an invalid data type (e.g., string value in a number field)
+        String csvContent = 'Name,Phone,AnnualRevenue\nInvalidAccount,1234567890,NotANumber';
         
         Test.startTest();
         
-        // Call the method for parsing the CSV into SObjects
-        List<SObject> sObjects = CsvDataProcessor.parseCsv(csvContent, 'npsp__DataImport__c', 'Batch123');
-        
-        // Assert that one SObject was created
-        System.assertEquals(1, sObjects.size(), 'One SObject should be created');
-        
-        // Assert that the batch ID was added to the record
-        System.assertEquals('Batch123', sObjects[0].get('npsp__NPSP_Data_Import_Batch__c'), 'Batch ID should be set');
+        // Call the method with invalid AnnualRevenue data for Account object
+        CsvDataProcessor.ProcessResult result = CsvDataProcessor.processCsvData(csvContent, 'Account', null);
+
+        // Assert that the process failed
+        System.assertEquals(false, result.success, 'The process should fail due to invalid data type');
+        System.assert(result.errorMessages.size() > 0, 'Error messages should be captured for the invalid AnnualRevenue');
+        System.assert(result.errorMessages[0].contains('AnnualRevenue'), 'Error should mention AnnualRevenue field');
         
         Test.stopTest();
     }
