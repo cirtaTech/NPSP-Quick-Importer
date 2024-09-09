@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <isExposed>true</isExposed>
+    <targets>
+        <target>lightning__FlowScreen</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="objectApiName" type="String" label="Object API Name" />
+            <property name="isFileValid" type="Boolean" label="Is File Valid?" />
+            <property name="importComplete" type="Boolean" label="Is Import Complete?" />
+            <property name="batchId" type="String" label="Batch ID" description="ID of the Batch Record"/>
+
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

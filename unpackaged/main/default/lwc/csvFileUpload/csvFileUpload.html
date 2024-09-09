@@ -1,0 +1,68 @@
+<template>
+    <div class="container">
+        <lightning-card>
+            <!-- CSV Upload Input Section -->
+            <div class="upload-section">
+                <!-- Input for uploading CSV file -->
+                <lightning-input type="file" label="Upload CSV File"
+                                 accept=".csv"
+                                 onchange={handleFileChange}
+                                 class="input-upload"
+                                 disabled={disableUploadInput}>
+                </lightning-input>
+
+                <!-- Show Import Button if the file is valid -->
+                <template if:true={showImportButton}>
+                    <lightning-button label="Start Import"
+                                      icon-name="utility:download"
+                                      variant="brand"
+                                      class="import-button"
+                                      onclick={handleImport}
+                                      disabled={disableImportButton}>
+                    </lightning-button>
+                </template>
+            </div>
+
+            <!-- Display any error messages -->
+            <template if:true={errorMessages.length}>
+                <div class="slds-box slds-theme_error error-message">
+                    <lightning-icon icon-name="utility:error" alternative-text="Error" size="small"></lightning-icon>
+                    <p>We encountered the following errors:</p>
+                    <ul>
+                        <template for:each={errorMessages} for:item="error">
+                            <li key={error}>{error}</li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+
+            <!-- Success message after the import completes -->
+            <template if:true={importComplete}>
+                <div class="slds-box slds-theme_success success-message">
+                    <p>Your CSV file was successfully uploaded. </p>
+                </div>
+
+                <!-- Text and "Process Batch" button for batch processing -->
+                <template if:false={isBatchIdNull}>
+                    <p class="batch-info-text">
+                        When you click 'Process Batch,' you will be redirected to the standard NPSP Data Import Batch Processing page to review, validate, or process the batch.
+                    </p>
+                    <lightning-button label="Process Batch"
+                                      variant="brand"
+                                      class="batch-button"
+                                      onclick={handleNextClick}>
+                    </lightning-button>
+                </template>
+
+                <!-- "Finish" button if no batchId is provided -->
+                <template if:true={isBatchIdNull}>
+                    <lightning-button label="Finish"
+                                      variant="brand"
+                                      class="finish-button"
+                                      onclick={handleNextClick}>
+                    </lightning-button>
+                </template>
+            </template>
+        </lightning-card>
+    </div>
+</template>

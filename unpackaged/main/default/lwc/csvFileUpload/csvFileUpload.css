@@ -1,0 +1,46 @@
+.container {
+    padding: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.upload-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.input-upload {
+    flex-grow: 1;
+    margin-right: 1rem;
+}
+
+.import-button {
+    flex-shrink: 0;
+}
+
+.error-message, .success-message {
+    padding: 1rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+}
+
+.batch-info-text {
+    margin: 1rem 0;
+    font-size: 0.875rem;
+    color: #333;
+}
+
+.finish-button, .batch-button {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+lightning-icon {
+    margin-right: 0.5rem;
+}

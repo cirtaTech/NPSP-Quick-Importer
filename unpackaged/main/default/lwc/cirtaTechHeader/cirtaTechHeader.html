@@ -1,0 +1,15 @@
+<template>
+    <div class="brand-section">
+        <div class="branding-left">
+            <!-- Dynamically display the icon passed as an attribute -->
+            <lightning-icon icon-name={iconName} alternative-text="Header Icon" size="small" class="white-icon"></lightning-icon>
+            <span class="brand-title">{titleText}</span>
+        </div>
+        <div class="branding-right">
+            <!-- Display the logo with a hyperlink passed from Flow -->
+            <a href={logoLink} target="_blank">
+                <img src={logoLink} alt="CirtaTech Logo" class="logo">
+            </a>
+        </div>
+    </div>
+</template>

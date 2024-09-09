@@ -1,0 +1,35 @@
+.brand-section {
+    background-color: #1E2131; /* Dark blue from the footer */
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    margin-bottom: 10px;
+    
+}
+
+.branding-left {
+    display: flex;
+    align-items: center;
+    color: white; /* Set text and icon color to white */
+}
+
+.brand-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+
+.white-icon {
+    --sds-c-icon-color-foreground-default: white; /* Set icon color to white */
+}
+
+.branding-right {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 80px; /* Logo size */
+}
