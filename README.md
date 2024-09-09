@@ -1,8 +1,11 @@
 
 # NPSP Quick Importer
-![My Project Image](./images/screenA1v2.png)
 
 **NPSP Quick Importer** is an extension to the **NPSP Data Importer** tool, designed to streamline data imports for nonprofits using Salesforce NPSP. This solution leverages the power of the NPSP Data Importer and enhances the user experience by speeding up the import process. With this tool, you can either import data directly into the **NPSP Data Import object** or choose any other Salesforce object by entering its API name, providing flexibility for use cases beyond the standard NPSP setup. 
+
+![Data Import Records](./images/data-import.gif)
+
+![Other Objects](./images/other-object.gif)
 
 ## Features
 
@@ -31,7 +34,7 @@ This tool **does not replace** the NPSP Data Importer but instead **enhances** i
 ## Installation
 
 1. **Install the Unmanaged Package**:
-   Install the unmanaged package from this link: [Install NPSP Quick Importer](www.google.com).
+   Install the unmanaged package from this link: [Install NPSP Quick Importer](https://login.salesforce.com/packaging/installPackage.apexp?p0=04taj00000030Zl&isdtp=p1).
 
 2. **Deploy from GitHub**:
    You can also clone this repository and deploy it manually using Salesforce CLI or any deployment tool:
